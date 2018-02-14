@@ -2,9 +2,6 @@
 
 var hoursOpen = ['6am', '7am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-// i need a second array -- one for cookies sold each hour and one for customers each hour?
-
-
 var pikePlace = {
   name: '1st and Pike',
   minCustomersPerHour: 23,
