@@ -3,14 +3,14 @@
 var hoursOpen = ['6am', '7am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var locations = [];
+var salmonCookieStores = document.getElementById('locations');
 
-function LocationLocationLocation(name, id, minCustomersPerHour, maxCustomersPerHour, averageCookiesPerCustomer) {
+function LocationSeattle(name, minCustomersPerHour, maxCustomersPerHour, averageCookiesPerCustomer, storedAmountofCookies) {
   this.name = name;
-  this.id = id;
   this.minCustomersPerHour = minCustomersPerHour;
   this.maxCustomersPerHour = maxCustomersPerHour;
   this.averageCookiesPerCustomer = averageCookiesPerCustomer;
-  this.totalCookiesPerDay = 0;
+  this.totalCookiesPerDay = storedAmountofCookies;
   this.randomNumCustomers = function () {
     return Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour+ 1)) + this.minCustomersPerHour;
   };
@@ -21,30 +21,63 @@ function LocationLocationLocation(name, id, minCustomersPerHour, maxCustomersPer
       this.amountOfCookiesPurchased.push(Math.round(storedAmountofCookies));
       this.totalCookiesPerDay += this.amountOfCookiesPurchased[i];
     }
+    locations.push(this);
   };
 
   this.render = function() {
     this.calculateNumberOfCookiesPurchasedPerHour();
-    var ulEl = document.getElementById(id);
+    var trEl = document.createElement('tr');
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.name;
+    trEl.appendChild(tdEl);
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.minCustomersPerHour;
+    trEl.appendChild(tdEl);
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.maxCustomersPerHour;
+    trEl.appendChild(tdEl);
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.averageCookiesPerCustomer;
+    trEl.appendChild(tdEl);
     for (var i = 0; i < this.amountOfCookiesPurchased.length; i++) {
-      // create an element
-      var liEl = document.createElement('li');
-      // give it content
-      liEl.textContent = hoursOpen[i] + ': ' + this.amountOfCookiesPurchased[i] + ' cookies';
-      // append it to the DOM
-      // parent.appendChild(child)
-      ulEl.appendChild(liEl);
+      tdEl = document.createElement('td');
+      tdEl.textContent = this.amountOfCookiesPurchased[i];
+      trEl.appendChild(tdEl);
     }
-    liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + this.totalCookiesPerDay + ' cookies';
-    ulEl.appendChild(liEl);
-
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.totalCookiesPerDay;
+    trEl.appendChild(tdEl);
+    salmonCookieStores.appendChild(trEl);
   };
   locations.push(this);
 }
 
-new LocationLocationLocation('1st and Pine', '1st and Pike', 23, 65, 6.3);
-new LocationLocationLocation('Seatac', 'seatac', 23, 65, 6.3);
-new LocationLocationLocation('Seattle Center', 'seattleCenter', 23, 65, 6.3);
-new LocationLocationLocation('Captiol Hill', 'capitolHill', 23, 65, 6.3);
-new LocationLocationLocation('Alki Beach', 'alkiBeach', 23, 65, 6.3);
+function makeHeaderRow() {
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = '6';
+  trEl.appendChild(thEl);
+  thEl = document.createElement('th');
+  thEl.textContent = '7';
+  trEl.appendChild(thEl);
+  thEl = document.createElement('th');
+  thEl.textContent = '8';
+  trEl.appendChild(thEl);
+
+  salmonCookieStores.appendChild(trEl); //js console can't read property appendChild of null at makeheaderRow
+}
+
+// this function works in repl.it for hoursOpen but not for makeStoreRows
+function makeStoreRows() {
+  for (var i = 0; i < hoursOpen.length; i++) {
+    hoursOpen.length[i];
+  }
+}
+makeHeaderRow();
+makeStoreRows();
+
+new LocationSeattle('1st and Pine', 23, 65, 6.3, 7);
+new LocationSeattle('Seatac', 3, 24, 1.2, 9);
+new LocationSeattle('Seattle Center', 11, 38, 3.7, 9);
+new LocationSeattle('Captiol Hill', 20, 38, 2.3, 200);
+new LocationSeattle('Alki Beach', 2, 16, 4.6, 90);
