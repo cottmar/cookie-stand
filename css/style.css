@@ -1,2 +1,16 @@
-@font-face { font-family: arimo ; src: url(https://fonts.google.com/specimen/Arimo) ('arimo'); } 
- @font-face { font-family: arimo; font-weight: bold; src: url('https://fonts.google.com/specimen/Arimo');}
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  }
+
+h1 {
+  font-family: 'Lora', serif;
+  color: skyblue;
+}
+
+body {
+  background-image: url("https://raw.githubusercontent.com/codefellows/seattle-201d32/master/class-06-dom-objects-domain_modeling/lab/assets/salmon.png");
+}
+
+.total {
+  font-weight: bold;
+}
