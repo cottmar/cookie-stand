@@ -31,22 +31,29 @@ function renderAllInputForms() {
   }
 }
 
-//nees something is replacement for who and says which correlates to the HTML page
-
 function handleSubmit(event) {
   event.preventDefault();
-  if (!event.target.says.value || !event.target.who.value) {
+  if (!event.target.where.value || !event.target.min.value || !event.target.max.value || !event.target.avg.value) {
     return alert('Fields cannot be empty!');
   }
+  var locationEdit = event.target.where.value;
+  var minimumCustomersPerHour = parseInt(event.target.min.value);
+  var maximumCustomersPerHour = parseInt(event.target.max.value);
+  var avgCookiesPerSale = parseFloat(event.target.avg.value);
+  var newStore = new LocationSeattle(locationEdit, minimumCustomersPerHour, maximumCustomersPerHour,avgCookiesPerSale);
+
+  event.target.where.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.avg.value = null;
+
+  newStore.render();
+
 }
 
-var locationEdit = event.target.where.value;
-var minimumCustomersPerHour = parseInt(event.target.min.value);
-var maximumCustomersPerHour = parseInt(event.target.max.value);
-var avgCookiesPerSale = event.target.avg.value;
-
-event.target.who.value = null;
-event.target.says.value = null;
+//rewatch lecture at 11:00am
+// for (var i = 0; i < SOMETHING.all.length; i++) {
+//   if() }
 
 chatForm.addEventListener('submit', handleSubmit);
 
@@ -120,8 +127,4 @@ function createTable() {
 }
 
 renderAllInputForms();
-locationEdit();
-minimumCustomersPerHour();
-maximumCustomersPerHour();
-avgCookiesPerSale();
 createTable();
