@@ -1,4 +1,7 @@
 
 
-@font-face { font-family: arimo ; src: url(https://fonts.google.com/specimen/Arimo) ('arimo'); } 
- @font-face { font-family: arimo; font-weight: bold; src: url('https://fonts.google.com/specimen/Arimo');} */
+table, th, td {
+  table-layout: auto;
+  width: 100px;
+  border: 1px solid #000000;
+}
