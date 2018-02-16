@@ -5,15 +5,36 @@
   <meta charset="utf-8">
   <title>Salmon Cookies</title>
   <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-  font
 </head>
 
 <body>
-  <h1>Salmon Cookie Count, Week of 2/12</h1>
-  <table id="salesTable"></table>
+  <h1>Salmon Cookie Count</h1>
 
   <h2FirstandPike></h2>
     <ul id=pike></ul>
+
+    <form id="submit-form">
+      <fieldset>
+        <legend></legend>
+  
+        <label for="where">Location Name</label>
+        <input name="where" type="text" size="23" />
+  
+        <label for="min">Minimum Customers Per Hour</label>
+        <input name="min" type="text" size="4" /> 
+  
+        <label for="max">Maximum Customers Per Hour</label>
+        <input name="max" type="text" size="4" />
+
+        <label for="avg">Average Customers Per Hour</label>
+        <input name="avg" type="text" size="4" />
+
+
+        <button type="submit">Submit</button>
+      </fieldset>
+    </form>
+
+    <table id="salesTable"></table>
 
   <script src="js/app.js"></script>
 </body>

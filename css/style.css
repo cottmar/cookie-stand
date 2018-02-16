@@ -1,7 +1,27 @@
 
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font: 'Roboto Condensed';
+  background-color: darkslategrey;
+  color: whitesmoke;
+  font-size: 200%;
+  align-content: center;
+}
+
+form {
+  margin: auto;
+  padding: 10px;
+}
 
 table, th, td {
+  margin: auto;
+  padding: 10px;
   table-layout: auto;
   width: 100px;
-  border: 1px solid #000000;
+  border: 1px solid whitesmoke;
 }
+
+img {
+  float: left;
+}
+
