@@ -3,33 +3,7 @@
 var hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var locations = [];
 var salmonCookieStores = document.getElementById('salesTable');
-// from sam's demo
-var chatList = document.getElementById('chat-list');
-var chatForm = document.getElementById('chat-form');
-var clearInputForm = document.getElementById('clear-input-form');
-var allInputForms = [];
-
-//constructor from sam's demo with my info added
-var InputForm = function(name, minCustomersPerHour, maxCustomersPerHour, averageCookiesPerCustomer) {
-  this.name = name;
-  this.minCustomersPerHour = minCustomersPerHour;
-  this.maxCustomersPerHour = maxCustomersPerHour;
-  this.averageCookiesPerCustomer = averageCookiesPerCustomer;
-  this.amountOfCookiesPurchased = [];
-  clearInputForm.push(this);
-};
-InputForm.prototype.render = function() {
-  var liEl = document.createElement('li');
-  return liEl;
-  //MAYBE GO BACK TO LINE 19
-};
-// FUNCTION DECLARATIONS
-function renderAllInputForms() {
-  chatList = ''; //huge question mark
-  for (var i = 0; i , allInputForms.length; i++) {
-    chatList.appendChild(allInputForms[i].render());
-  }
-}
+var submitForm = document.getElementById('submit-form');
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -40,22 +14,21 @@ function handleSubmit(event) {
   var minimumCustomersPerHour = parseInt(event.target.min.value);
   var maximumCustomersPerHour = parseInt(event.target.max.value);
   var avgCookiesPerSale = parseFloat(event.target.avg.value);
-  var newStore = new LocationSeattle(locationEdit, minimumCustomersPerHour, maximumCustomersPerHour,avgCookiesPerSale);
+  new LocationSeattle(locationEdit, minimumCustomersPerHour, maximumCustomersPerHour,avgCookiesPerSale);
 
   event.target.where.value = null;
   event.target.min.value = null;
   event.target.max.value = null;
   event.target.avg.value = null;
 
-  newStore.render();
 
+  salmonCookieStores.innerHTML = '';
+  makeHeaderRow();
+  createTable();
+  makeFooterRow();
 }
 
-//rewatch lecture at 11:00am
-// for (var i = 0; i < SOMETHING.all.length; i++) {
-//   if() }
-
-chatForm.addEventListener('submit', handleSubmit);
+submitForm.addEventListener('submit', handleSubmit);
 
 //this was mine
 function LocationSeattle(name, minCustomersPerHour, maxCustomersPerHour, averageCookiesPerCustomer) {
@@ -79,6 +52,7 @@ LocationSeattle.prototype.randomNumCustomers = function () {
 };
 
 LocationSeattle.prototype.calculateNumberOfCookiesPurchasedPerHour = function () {
+  this.totalCookiesPerDay = 0;
   for (var i = 0; i < hoursOpen.length; i++) {
     var storedAmountofCookies = this.averageCookiesPerCustomer * this.randomNumCustomers();
     this.amountOfCookiesPurchased.push(Math.round(storedAmountofCookies));
@@ -117,14 +91,38 @@ function makeHeaderRow() {
   thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
+  salmonCookieStores.appendChild(trEl);
 }
 
 function createTable() {
-  makeHeaderRow();
   for (var i = 0; i < locations.length; i++) {
     locations[i].render();
   }
 }
 
-renderAllInputForms();
+function makeFooterRow() {
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  var grandCookieTotal = 0;
+  thEl.textContent = 'Totals';
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var cookieTotal = 0;
+    for (var j = 0; j < locations.length; j++) {
+      cookieTotal += locations[j].amountOfCookiesPurchased[i];
+    }
+    grandCookieTotal += cookieTotal;
+    thEl = document.createElement('th');
+    thEl.textContent = cookieTotal;
+    trEl.appendChild(thEl);
+  }
+  thEl = document.createElement('th');
+  thEl.textContent = grandCookieTotal;
+  trEl.appendChild(thEl);
+
+  salmonCookieStores.appendChild(trEl);
+}
+
+makeHeaderRow();
 createTable();
+makeFooterRow();
