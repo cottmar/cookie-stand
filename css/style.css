@@ -4,8 +4,12 @@ body {
   font: 'Roboto Condensed';
   background-color: darkslategrey;
   color: whitesmoke;
-  font-size: 200%;
+  font-size: 150%;
   align-content: center;
+}
+
+body h1 {
+  text-align: center;
 }
 
 form {
@@ -21,7 +25,30 @@ table, th, td {
   border: 1px solid whitesmoke;
 }
 
-img {
-  float: left;
+body img {
+  display: inline-block;
+  margin: auto;
+  text-align: center;
 }
 
+main img {
+  float: right;
+}
+
+ul {
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 8em
+}
+
+footer p {
+  text-align: center;
+}
+
+footer h1 {
+  text-align: center;
+}
+
+footer h2 {
+  text-align: center;
+}
