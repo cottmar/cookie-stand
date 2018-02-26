@@ -1,11 +1,37 @@
+* {
+  align-content: center;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-family: 'Teko', sans-serif;
+ 
+}
+ul {
+  height: 5vh;
+  width: 58vw;
+    
+}
+
+header nav li {
+  display: inline-block;
+  width: 10%;
+  height: 2vh;
+
+}
 
 body {
-  font-family: 'Roboto Condensed', sans-serif;
-  font: 'Roboto Condensed';
-  background-color: darkslategrey;
+  background-color: black;
   color: whitesmoke;
-  font-size: 200%;
+  font-size: 150%;
   align-content: center;
+}
+
+nav {
+  width: 960px;
+  margin: 0px auto;
+}
+
+body {
+  text-align: center;
 }
 
 form {
@@ -21,7 +47,29 @@ table, th, td {
   border: 1px solid whitesmoke;
 }
 
-img {
-  float: left;
+body img {
+  display: block;
+  margin: auto;
 }
 
+main img {
+  float: right;
+}
+
+ul {
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
+footer p {
+  text-align: center;
+}
+
+footer h1 {
+  text-align: center;
+}
+
+footer h2 {
+  text-align: center;
+}
